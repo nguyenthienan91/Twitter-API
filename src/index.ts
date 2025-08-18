@@ -1,6 +1,13 @@
-type Handle = () => Promise<string>
-const myName: string = 'Nguyễn Thiên Ân'
+import express from 'express'
+import usersRouter from './routes/users.route'
+const app = express()
 
-const handle: Handle = () => Promise.resolve(myName)
+const PORT = 3000
 
-handle().then(console.log)
+// thêm middleware này để parse JSON
+app.use(express.json())
+
+app.use('/users', usersRouter)
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
+})
