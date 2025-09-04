@@ -4,7 +4,10 @@ import { RegisterReqBody } from '~/models/requests/User.requests'
 import { hashPassword } from '~/utils/cryto'
 import { signToken } from '~/utils/jwt'
 import { TokenType } from '~/constants/enums'
-
+import RefreshToken from '~/models/schemas/RefreshToken.schema'
+import { ObjectId } from 'mongodb'
+import { config } from 'dotenv'
+config()
 // const ACCESS_TOKEN_EXPIRES_IN: string = process.env.ACCESS_TOKEN_EXPIRES_IN || '15m'
 // const REFRESH_TOKEN_EXPIRES_IN: string = process.env.REFRESH_TOKEN_EXPIRES_IN || '100d'
 class UsersService {
@@ -32,12 +35,11 @@ class UsersService {
     })
   }
   private signAccessAndRefreshToken(user_id: string) {
-     return Promise.all([
+    return Promise.all([
       //tạo access token và refresh token
       this.signAccessToken(user_id),
       this.signRefreshToken(user_id)
     ])
-
   }
   async register(payload: RegisterReqBody) {
     const res = await databaseService.users.insertOne(
@@ -49,6 +51,9 @@ class UsersService {
     )
     const user_id = res.insertedId.toString()
     const [access_token, refresh_token] = await this.signAccessAndRefreshToken(user_id)
+    await databaseService.refreshTokens.insertOne(
+      new RefreshToken({ user_id: new ObjectId(user_id), token: refresh_token })
+    )
     return {
       access_token,
       refresh_token
@@ -63,12 +68,14 @@ class UsersService {
 
   async login(user_id: string) {
     const [access_token, refresh_token] = await this.signAccessAndRefreshToken(user_id)
+    await databaseService.refreshTokens.insertOne(
+      new RefreshToken({ user_id: new ObjectId(user_id), token: refresh_token })
+    )
     return {
       access_token,
       refresh_token
     }
   }
-
 }
 
 const userService = new UsersService()

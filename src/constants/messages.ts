@@ -19,7 +19,7 @@ export const USERS_MESSAGES = {
     ' Confirmed password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
   CONFIRMED_PASSWORD_MUST_MATCH: 'Confirmed password must match password',
   DATE_OF_BIRTH_MUST_BE_ISO8601: 'Date of birth must be ISO8601',
-  USER_NOT_FOUND: 'User not found',
+  EMAIL_OR_PASSWORD_INCORRECT: 'Email or password incorrect',
   LOGIN_SUCCESS: 'Login success',
   REGISTER_SUCCESS: 'Register success'
 } as const
