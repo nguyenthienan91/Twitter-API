@@ -1,3 +1,21 @@
 export const USERS_MESSAGES = {
-  VALIDATION_ERROR: 'Validation error'
+  VALIDATION_ERROR: 'Validation error',
+  NAME_IS_REQUIRED: 'Name is required',
+  NAME_MUST_BE_A_STRING: 'Name must be a string',
+  NAME_LENGTH_MUST_BE_FROM_1_TO_100: 'Name length must be from 1 to 100',
+  EMAIL_ALREADY_EXISTS: 'Email already exist',
+  EMAIL_IS_REQUIRED: 'Email is required',
+  EMAIL_MUST_BE_A_STRING: 'Email must be a string',
+  EMAIL_MUST_BE_A_VALID_EMAIL: 'Email must be a valid email',
+  PASSWORD_IS_REQUIRED: 'Password is required',
+  PASSWORD_MUST_BE_A_STRING: 'Password must be a string',
+  PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50: 'Password length must be from 6 to 50',
+  PASSWORD_MUST_BE_STRONG:' Password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
+  CONFIRMED_PASSWORD_IS_REQUIRED: 'Confirmed password is required',
+  CONFIRMED_PASSWORD_MUST_BE_A_STRING: 'Confirmed password must be a string',
+  CONFIRMED_PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50: 'Confirmed password length must be from 6 to 50',
+  CONFIRMED_PASSWORD_MUST_BE_STRONG:' Confirmed password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
+  CONFIRMED_PASSWORD_MUST_MATCH: 'Confirmed password must match password',
+  DATE_OF_BIRTH_MUST_BE_ISO8601: 'Date of birth must be ISO8601',
+
 } as const
