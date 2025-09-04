@@ -10,12 +10,16 @@ export const USERS_MESSAGES = {
   PASSWORD_IS_REQUIRED: 'Password is required',
   PASSWORD_MUST_BE_A_STRING: 'Password must be a string',
   PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50: 'Password length must be from 6 to 50',
-  PASSWORD_MUST_BE_STRONG:' Password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
+  PASSWORD_MUST_BE_STRONG:
+    ' Password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
   CONFIRMED_PASSWORD_IS_REQUIRED: 'Confirmed password is required',
   CONFIRMED_PASSWORD_MUST_BE_A_STRING: 'Confirmed password must be a string',
   CONFIRMED_PASSWORD_LENGTH_MUST_BE_FROM_6_TO_50: 'Confirmed password length must be from 6 to 50',
-  CONFIRMED_PASSWORD_MUST_BE_STRONG:' Confirmed password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
+  CONFIRMED_PASSWORD_MUST_BE_STRONG:
+    ' Confirmed password must be at least 6 characters long and contain at least 1 lowercase, 1 uppercase, 1 number and 1 symbol',
   CONFIRMED_PASSWORD_MUST_MATCH: 'Confirmed password must match password',
   DATE_OF_BIRTH_MUST_BE_ISO8601: 'Date of birth must be ISO8601',
-
+  USER_NOT_FOUND: 'User not found',
+  LOGIN_SUCCESS: 'Login success',
+  REGISTER_SUCCESS: 'Register success'
 } as const
