@@ -3,6 +3,7 @@ import { error } from 'console'
 import { config } from 'dotenv'
 import jwt from 'jsonwebtoken'
 import { resolve } from 'path'
+import { TokenPayLoad } from '~/models/requests/User.requests'
 config()
 export const signToken = ({
   payload,
@@ -25,9 +26,19 @@ export const signToken = ({
   })
 }
 
-// signToken({
-//   payload: {},
-//   options: {
-//     algorithm
-//   }
-// })
+export const verifyToken = ({
+  token,
+  secretOrPublickey = process.env.JWT_SECRET as string
+}: {
+  token: string
+  secretOrPublickey?: string
+}) => {
+  return new Promise<TokenPayLoad>((resolve, reject) => {
+    jwt.verify(token, secretOrPublickey, (error, decoded) => {
+      if (error) {
+        throw reject(error)
+      }
+      resolve(decoded as TokenPayLoad)
+    })
+  })
+}
