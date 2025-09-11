@@ -1,5 +1,5 @@
-import { JwtPayload } from "jsonwebtoken"
-import { TokenType } from "~/constants/enums"
+import { JwtPayload } from 'jsonwebtoken'
+import { TokenType } from '~/constants/enums'
 
 export interface RegisterReqBody {
   name: string
@@ -14,15 +14,23 @@ export interface LoginReqBody {
   password: string
 }
 
-export interface emailVerifyReqBody{
+export interface ForgotPasswordReqBody {
+  email: string
+}
+
+export interface VerifyForgotPasswordReqBody {
+  forgot_password_token: string
+}
+
+export interface emailVerifyReqBody {
   email_verify_token: string
 }
 
-export interface TokenPayLoad extends JwtPayload{
-  user_id: string,
+export interface TokenPayLoad extends JwtPayload {
+  user_id: string
   token_type: TokenType
 }
 
-export interface logoutReqBody{
+export interface logoutReqBody {
   refresh_token: string
 }
