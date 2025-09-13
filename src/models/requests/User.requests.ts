@@ -55,3 +55,7 @@ export interface logoutReqBody {
 export interface GetProfileReqPrams {
   username: string
 }
+
+export interface FollowReqBody {
+  followed_user_id: string
+}

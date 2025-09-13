@@ -6,6 +6,7 @@ import userService from '~/services/users.services'
 import { ParamsDictionary } from 'express-serve-static-core'
 import {
   emailVerifyReqBody,
+  FollowReqBody,
   ForgotPasswordReqBody,
   GetProfileReqPrams,
   logoutReqBody,
@@ -161,4 +162,11 @@ export const updateProfileController = async (
     message: USERS_MESSAGES.UPDATE_PROFILE_SUCCESS,
     result: user
   })
+}
+
+export const followController = async (req: Request<ParamsDictionary, any, FollowReqBody>, res: Response) => {
+  const { user_id } = req.decoded_authorization as TokenPayLoad
+  const { followed_user_id } = req.body
+  const result = await userService.follow(user_id, followed_user_id)
+  return res.json(result)
 }

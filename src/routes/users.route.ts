@@ -10,12 +10,14 @@ import {
   resetPasswordController,
   updateProfileController,
   getProfileControllerOfOthers,
-  getProfileController
+  getProfileController,
+  followController
 } from '~/controllers/users.controllers'
 import { filterMiddleware } from '~/middlewares/common.middlewares'
 import {
   accessTokenValidator,
   emailVerifyTokenValidator,
+  followValidator,
   loginValidator,
   refreshTokenValidator,
   registerValidator,
@@ -145,5 +147,20 @@ usersRouter.patch(
  * Method: GET
  */
 usersRouter.get('/:username', wrapRequestHandler(getProfileControllerOfOthers))
+
+/**
+ * Description: follow someone
+ * path: /follow
+ * Method: POST
+ * Header: {Authorization Bearer <access_token>}
+ * Body: {followed_user_id: String}
+ */
+usersRouter.post(
+  '/follow',
+  accessTokenValidator,
+  verifiedUserValidator,
+  followValidator,
+  wrapRequestHandler(followController)
+)
 
 export default usersRouter
