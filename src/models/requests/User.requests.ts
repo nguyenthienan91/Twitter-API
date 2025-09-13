@@ -51,3 +51,7 @@ export interface TokenPayLoad extends JwtPayload {
 export interface logoutReqBody {
   refresh_token: string
 }
+
+export interface GetProfileReqPrams {
+  username: string
+}

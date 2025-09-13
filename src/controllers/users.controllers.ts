@@ -7,6 +7,7 @@ import { ParamsDictionary } from 'express-serve-static-core'
 import {
   emailVerifyReqBody,
   ForgotPasswordReqBody,
+  GetProfileReqPrams,
   logoutReqBody,
   RegisterReqBody,
   ResetPasswordReqBody,
@@ -130,7 +131,16 @@ export const resetPasswordController = async (
   return res.json(result)
 }
 
-export const GetProfileController = async (req: Request, res: Response) => {
+export const getProfileControllerOfOthers = async (req: Request<GetProfileReqPrams>, res: Response) => {
+  const { username } = req.params
+  const user = await userService.getOtherProfile(username)
+  return res.json({
+    message: USERS_MESSAGES.GET_PROFILE_SUCCESS,
+    result: user
+  })
+}
+
+export const getProfileController = async (req: Request, res: Response) => {
   const { user_id } = req.decoded_authorization as TokenPayLoad
   const user = await userService.getProfile(user_id)
   return res.json({
@@ -147,7 +157,7 @@ export const updateProfileController = async (
   const { body } = req
   console.log(body)
   const user = await userService.updateProfile(user_id, body)
-  res.json({
+  return res.json({
     message: USERS_MESSAGES.UPDATE_PROFILE_SUCCESS,
     result: user
   })

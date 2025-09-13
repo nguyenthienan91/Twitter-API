@@ -8,8 +8,9 @@ import {
   forgotPasswordController,
   verifyForgotPasswordController,
   resetPasswordController,
-  GetProfileController,
-  updateProfileController
+  updateProfileController,
+  getProfileControllerOfOthers,
+  getProfileController
 } from '~/controllers/users.controllers'
 import { filterMiddleware } from '~/middlewares/common.middlewares'
 import {
@@ -111,7 +112,7 @@ usersRouter.post('/reset-password', resetPasswordValidator, wrapRequestHandler(r
  * Method: GET
  * Header: {Authorization Bearer <access_token>}
  */
-usersRouter.get('/me', accessTokenValidator, wrapRequestHandler(GetProfileController))
+usersRouter.get('/me', accessTokenValidator, wrapRequestHandler(getProfileController))
 
 /**
  * Description: update profile of logged in user
@@ -125,7 +126,24 @@ usersRouter.patch(
   accessTokenValidator,
   verifiedUserValidator,
   updateProfileValidator,
-  filterMiddleware<UpdateProfileReqBody>(['name', 'date_of_birth', 'bio', 'location', 'website', 'username', 'avatar', 'cover_photo']),
+  filterMiddleware<UpdateProfileReqBody>([
+    'name',
+    'date_of_birth',
+    'bio',
+    'location',
+    'website',
+    'username',
+    'avatar',
+    'cover_photo'
+  ]),
   wrapRequestHandler(updateProfileController)
 )
+
+/**
+ * Description: get a profile of any user
+ * path: /:username
+ * Method: GET
+ */
+usersRouter.get('/:username', wrapRequestHandler(getProfileControllerOfOthers))
+
 export default usersRouter
