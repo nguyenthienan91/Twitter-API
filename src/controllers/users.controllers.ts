@@ -18,6 +18,7 @@ import { ObjectId } from 'mongodb'
 import { USERS_MESSAGES } from '~/constants/messages'
 import HTTP_STATUS from '~/constants/httpStatus'
 import { UserVerifyStatus } from '~/constants/enums'
+import { pick } from 'lodash'
 
 export const loginController = async (req: Request, res: Response) => {
   const user = req.user as User
@@ -144,6 +145,7 @@ export const updateProfileController = async (
 ) => {
   const { user_id } = req.decoded_authorization as TokenPayLoad
   const { body } = req
+  console.log(body)
   const user = await userService.updateProfile(user_id, body)
   res.json({
     message: USERS_MESSAGES.UPDATE_PROFILE_SUCCESS,

@@ -11,6 +11,7 @@ import {
   GetProfileController,
   updateProfileController
 } from '~/controllers/users.controllers'
+import { filterMiddleware } from '~/middlewares/common.middlewares'
 import {
   accessTokenValidator,
   emailVerifyTokenValidator,
@@ -23,6 +24,7 @@ import {
   verifiedUserValidator,
   verifyForgotPasswordTokenValidator
 } from '~/middlewares/users.middlewares'
+import { UpdateProfileReqBody } from '~/models/requests/User.requests'
 import { wrapRequestHandler } from '~/utils/handlers'
 import { validate } from '~/utils/validation'
 const usersRouter = Router()
@@ -123,6 +125,7 @@ usersRouter.patch(
   accessTokenValidator,
   verifiedUserValidator,
   updateProfileValidator,
+  filterMiddleware<UpdateProfileReqBody>(['name', 'date_of_birth', 'bio', 'location', 'website', 'username', 'avatar', 'cover_photo']),
   wrapRequestHandler(updateProfileController)
 )
 export default usersRouter
