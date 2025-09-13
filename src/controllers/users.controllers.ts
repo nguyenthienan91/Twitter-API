@@ -11,6 +11,7 @@ import {
   RegisterReqBody,
   ResetPasswordReqBody,
   TokenPayLoad,
+  UpdateProfileReqBody,
   VerifyForgotPasswordReqBody
 } from '~/models/requests/User.requests'
 import { ObjectId } from 'mongodb'
@@ -22,7 +23,7 @@ export const loginController = async (req: Request, res: Response) => {
   const user = req.user as User
   const user_id = user._id as ObjectId
   // throw new Error('Test Error')
-  const result = await userService.login(user_id.toString())
+  const result = await userService.login({ user_id: user_id.toString(), verify: user.verify })
   return res.json({
     message: USERS_MESSAGES.LOGIN_SUCCESS,
     result
@@ -106,8 +107,8 @@ export const forgotPasswordController = async (
   req: Request<ParamsDictionary, any, ForgotPasswordReqBody>,
   res: Response
 ) => {
-  const { _id } = req.user as User
-  const result = await userService.forgotPassword((_id as ObjectId).toString())
+  const { _id, verify } = req.user as User
+  const result = await userService.forgotPassword({ user_id: (_id as ObjectId).toString(), verify })
   return res.json(result)
 }
 
@@ -133,6 +134,19 @@ export const GetProfileController = async (req: Request, res: Response) => {
   const user = await userService.getProfile(user_id)
   return res.json({
     message: USERS_MESSAGES.GET_PROFILE_SUCCESS,
+    result: user
+  })
+}
+
+export const updateProfileController = async (
+  req: Request<ParamsDictionary, any, UpdateProfileReqBody>,
+  res: Response
+) => {
+  const { user_id } = req.decoded_authorization as TokenPayLoad
+  const { body } = req
+  const user = await userService.updateProfile(user_id, body)
+  res.json({
+    message: USERS_MESSAGES.UPDATE_PROFILE_SUCCESS,
     result: user
   })
 }
