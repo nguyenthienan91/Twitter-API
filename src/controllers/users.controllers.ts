@@ -13,6 +13,7 @@ import {
   RegisterReqBody,
   ResetPasswordReqBody,
   TokenPayLoad,
+  UnFollowReqParams,
   UpdateProfileReqBody,
   VerifyForgotPasswordReqBody
 } from '~/models/requests/User.requests'
@@ -168,5 +169,12 @@ export const followController = async (req: Request<ParamsDictionary, any, Follo
   const { user_id } = req.decoded_authorization as TokenPayLoad
   const { followed_user_id } = req.body
   const result = await userService.follow(user_id, followed_user_id)
+  return res.json(result)
+}
+
+export const unFollowController = async (req: Request<UnFollowReqParams>, res: Response) => {
+  const { user_id } = req.decoded_authorization as TokenPayLoad
+  const { user_id: followed_user_id } = req.params
+  const result = await userService.unFollow(user_id, followed_user_id)
   return res.json(result)
 }

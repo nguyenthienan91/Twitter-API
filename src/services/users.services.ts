@@ -288,6 +288,25 @@ class UsersService {
       message: USERS_MESSAGES.YOU_HAVE_FOLLOWED_THIS_ACCOUNT
     }
   }
+
+  async unFollow(user_id: string, followed_user_id: string) {
+    const follower = await databaseService.followers.findOne({
+      user_id: new ObjectId(user_id),
+      followed_user_id: new ObjectId(followed_user_id)
+    })
+    if (follower !== null) {
+      await databaseService.followers.deleteOne({
+        user_id: new ObjectId(user_id),
+        followed_user_id: new ObjectId(followed_user_id)
+      })
+      return {
+        message: USERS_MESSAGES.UNFOLLOW_SUCCESS
+      }
+    }
+    return {
+      message: USERS_MESSAGES.YOU_HAVE_NOT_FOLLOWED_THIS_ACCOUNT
+    }
+  }
 }
 
 const userService = new UsersService()
