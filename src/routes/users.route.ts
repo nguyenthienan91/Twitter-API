@@ -12,11 +12,13 @@ import {
   getProfileControllerOfOthers,
   getProfileController,
   followController,
-  unFollowController
+  unFollowController,
+  changePasswordController
 } from '~/controllers/users.controllers'
 import { filterMiddleware } from '~/middlewares/common.middlewares'
 import {
   accessTokenValidator,
+  changePasswordValidator,
   emailVerifyTokenValidator,
   followValidator,
   loginValidator,
@@ -177,6 +179,21 @@ usersRouter.delete(
   verifiedUserValidator,
   unFollowValidator,
   wrapRequestHandler(unFollowController)
+)
+
+/**
+ * Description: change password
+ * path: /change-password
+ * Method: PUT
+ * Header: {Authorization Bearer <access_token>}
+ * Body: {old_password: string, password: string, confirm_password:string}
+ */
+usersRouter.put(
+  '/change-password',
+  accessTokenValidator,
+  verifiedUserValidator,
+  changePasswordValidator,
+  wrapRequestHandler(changePasswordController)
 )
 
 export default usersRouter
