@@ -13,6 +13,7 @@ import { capitalize } from 'lodash'
 import { ObjectId } from 'mongodb'
 import { TokenPayLoad } from '~/models/requests/User.requests'
 import { UserVerifyStatus } from '~/constants/enums'
+import { REGEX_USERNAME } from '~/constants/regex'
 
 const passwordSchema: ParamSchema = {
   notEmpty: {
@@ -530,12 +531,16 @@ export const updateProfileValidator = validate(
           errorMessage: USERS_MESSAGES.USERNAME_MUST_BE_A_STRING
         },
         trim: true,
-        isLength: {
-          options: {
-            min: 1,
-            max: 50
-          },
-          errorMessage: USERS_MESSAGES.USERNAME_LENGTH_MUST_BE_FROM_1_TO_50
+        custom: {
+          options: async (value: string, { req }) => {
+            if (!REGEX_USERNAME.test(value)) {
+              throw Error(USERS_MESSAGES.INVALID_USERNAME)
+            }
+            const user = await databaseService.users.findOne({ username: value })
+            if (user) {
+              throw Error(USERS_MESSAGES.USERNAME_ALREADY_EXISTED)
+            }
+          }
         }
       },
       avatar: imageSchema,

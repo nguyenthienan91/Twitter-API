@@ -153,16 +153,21 @@ export const getProfileController = async (req: Request, res: Response) => {
 
 export const updateProfileController = async (
   req: Request<ParamsDictionary, any, UpdateProfileReqBody>,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
-  const { user_id } = req.decoded_authorization as TokenPayLoad
-  const { body } = req
-  console.log(body)
-  const user = await userService.updateProfile(user_id, body)
-  return res.json({
-    message: USERS_MESSAGES.UPDATE_PROFILE_SUCCESS,
-    result: user
-  })
+  try {
+    const { user_id } = req.decoded_authorization as TokenPayLoad
+    const { body } = req
+    const result = await userService.updateProfile(user_id, body)
+    return res.json({
+      message: USERS_MESSAGES.UPDATE_PROFILE_SUCCESS,
+      result
+    })
+  } catch (error) {
+    next(error)
+    return
+  }
 }
 
 export const followController = async (req: Request<ParamsDictionary, any, FollowReqBody>, res: Response) => {
