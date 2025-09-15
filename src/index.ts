@@ -5,7 +5,7 @@ import { defaultErrorHandler } from './middlewares/error.middlewares'
 
 databaseService.connect()
 const app = express()
-const PORT = 3000
+const PORT = 4000
 
 // thêm middleware này để parse JSON
 app.use(express.json())

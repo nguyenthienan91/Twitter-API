@@ -23,6 +23,8 @@ import { USERS_MESSAGES } from '~/constants/messages'
 import HTTP_STATUS from '~/constants/httpStatus'
 import { UserVerifyStatus } from '~/constants/enums'
 import { pick } from 'lodash'
+import { access } from 'fs'
+// config()
 
 export const loginController = async (req: Request, res: Response) => {
   const user = req.user as User
@@ -33,6 +35,14 @@ export const loginController = async (req: Request, res: Response) => {
     message: USERS_MESSAGES.LOGIN_SUCCESS,
     result
   })
+}
+
+export const oauthController = async (req: Request, res: Response) => {
+  const { code } = req.query
+  const result = await userService.oauth(code as string)
+  const urlRedirect = `${process.env.CLIENT_REDIRECT_CALLBACK}?access_token=${result.access_token}&refresh_token=${result.refresh_token}
+  &new_user=${result.newUser}&verify=${result.verify}`
+  return res.redirect(urlRedirect)
 }
 
 export const registerController = async (
