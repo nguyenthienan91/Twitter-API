@@ -5,6 +5,7 @@ import { defaultErrorHandler } from './middlewares/error.middlewares'
 import mediasRouter from './routes/medias.route'
 import { initFolder } from './utils/file'
 import { config } from 'dotenv'
+import { UPLOAD_DIR } from './constants/directory'
 
 config()
 
@@ -12,9 +13,10 @@ databaseService.connect()
 const app = express()
 const PORT = process.env.PORT || 4000
 
-
 // Tạo folder upload nếu chưa tồn tại
 initFolder()
+// Xử lí serving static file
+app.use('/static', express.static(UPLOAD_DIR))
 
 // thêm middleware này để parse JSON
 app.use(express.json())

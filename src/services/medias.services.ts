@@ -19,8 +19,8 @@ class MediasService {
       })
       .toFile(newPath)
     return isProduction
-      ? `${process.env.HOST}/medias/${newName}.jpg`
-      : `http://localhost:${process.env.PORT}/uploads/${newName}.jpg`
+      ? `${process.env.HOST}/static/${newName}.jpg`
+      : `http://localhost:${process.env.PORT}/static/${newName}.jpg`
   }
 }
 
