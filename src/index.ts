@@ -5,7 +5,7 @@ import { defaultErrorHandler } from './middlewares/error.middlewares'
 import mediasRouter from './routes/medias.route'
 import { initFolder } from './utils/file'
 import { config } from 'dotenv'
-import { UPLOAD_IMAGE_DIR } from './constants/directory'
+import { UPLOAD_IMAGE_DIR, UPLOAD_VIDEO_DIR } from './constants/directory'
 import staticRouter from './routes/static.routes'
 
 config()
@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 4000
 // Tạo folder upload nếu chưa tồn tại
 initFolder()
 // Xử lí serving static file
-// app.use('/static', express.static(UPLOAD_IMAGE_DIR))
+// app.use('/static/video', express.static(UPLOAD_VIDEO_DIR))
 
 // thêm middleware này để parse JSON
 app.use(express.json())

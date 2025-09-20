@@ -49,7 +49,8 @@ export const USERS_MESSAGES = {
   WEBSITE_LENGTH_MUST_BE_FROM_1_TO_400: 'Website length must be from 1 to 400',
   USERNAME_MUST_BE_A_STRING: 'Username must be a string',
   USERNAME_LENGTH_MUST_BE_FROM_1_TO_50: 'Username length must be from 1 to 50',
-  INVALID_USERNAME: 'Username must be 4-15 characters long and contain only letters, numbers and underscore. Cannot contain only numbers',
+  INVALID_USERNAME:
+    'Username must be 4-15 characters long and contain only letters, numbers and underscore. Cannot contain only numbers',
   IMAGE_URL_MUST_BE_A_STRING: 'Image url must be a string',
   IMAGE_URL_LENGTH: 'Image url length from 1 to 400',
   UPDATE_PROFILE_SUCCESS: 'Update profile success',
@@ -63,6 +64,6 @@ export const USERS_MESSAGES = {
   CHANGE_PASSWORD_SUCCESS: 'Change password success',
   GMAIL_NOT_VERIFIED: 'Gmail not verified',
   UPLOAD_IMAGE_SUCCESS: 'Upload image successfully',
-  UPLOAD_VIDEO_SUCCESS: 'Upload video successfully'
-
+  UPLOAD_VIDEO_SUCCESS: 'Upload video successfully',
+  REFRESH_TOKEN_SUCCESS: 'Refresh token success'
 } as const
