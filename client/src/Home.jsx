@@ -2,7 +2,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Link } from 'react-router-dom'
-
+import '@vidstack/react/player/styles/default/theme.css'
+import '@vidstack/react/player/styles/default/layouts/video.css'
+import { MediaPlayer, MediaProvider } from '@vidstack/react'
+import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default'
+import { Poster } from '@vidstack/react'
 console.log(import.meta.env)
 
 const getGoogleAuthUrl = () => {
@@ -41,9 +45,21 @@ export default function Home() {
           <img src={reactLogo} className='logo react' alt='React logo' />
         </span>
       </div>
+      <h2>Video streaming</h2>
       <video controls width={500}>
         <source src='http://localhost:4000/static/video-stream/m67rq5iwb0mv5wlii1ei2ieut.mp4' type='video/mp4' />
       </video>
+
+      <h2>Video HLS</h2>
+      <MediaPlayer title='Sprite Fight' src='http://localhost:4000/static/video-hls/MaC6h8LC1lcqmbSlxusXW/master.m3u8'>
+        <MediaProvider>
+        </MediaProvider>
+        <DefaultVideoLayout
+          thumbnails='https://files.vidstack.io/sprite-fight/thumbnails.vtt'
+          icons={defaultLayoutIcons}
+        />
+      </MediaPlayer>
+
       <h1>Google OAuth 2.0</h1>
       {isAuthenticated ? (
         <>

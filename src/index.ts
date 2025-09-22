@@ -7,13 +7,14 @@ import { initFolder } from './utils/file'
 import { config } from 'dotenv'
 import { UPLOAD_IMAGE_DIR, UPLOAD_VIDEO_DIR } from './constants/directory'
 import staticRouter from './routes/static.routes'
+import cors from 'cors'
 
 config()
 
 databaseService.connect()
 const app = express()
 const PORT = process.env.PORT || 4000
-
+app.use(cors())
 // Tạo folder upload nếu chưa tồn tại
 initFolder()
 // Xử lí serving static file
