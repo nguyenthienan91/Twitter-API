@@ -3,7 +3,9 @@ import { config } from 'dotenv'
 import User from '~/models/schemas/User.schema'
 import RefreshToken from '~/models/schemas/RefreshToken.schema'
 import Follower from '~/models/schemas/Follower.schema'
-config()
+import VideoStatus from '~/models/schemas/VideoStatus.schema'
+import { loadEnvConfig } from '~/utils/config'
+loadEnvConfig()
 // console.log(process.env.DB_USERNAME)
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 @twitter.6gg1jz7.mongodb.net/?retryWrites=true&w=majority&appName=Twitter`
@@ -45,6 +47,10 @@ class DatabaseService {
 
   get followers(): Collection<Follower> {
     return this.db.collection(process.env.DB_FOLLOWERS_COLLECTION as string)
+  }
+
+  get videoStatus(): Collection<VideoStatus> {
+    return this.db.collection(process.env.DB_VIDEO_STATUS_COLLECTION as string)
   }
 }
 

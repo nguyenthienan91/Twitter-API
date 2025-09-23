@@ -8,8 +8,9 @@ import { config } from 'dotenv'
 import { UPLOAD_IMAGE_DIR, UPLOAD_VIDEO_DIR } from './constants/directory'
 import staticRouter from './routes/static.routes'
 import cors from 'cors'
+import { loadEnvConfig } from './utils/config'
 
-config()
+loadEnvConfig()
 
 databaseService.connect()
 const app = express()

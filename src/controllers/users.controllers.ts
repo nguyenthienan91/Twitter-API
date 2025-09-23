@@ -25,7 +25,7 @@ import HTTP_STATUS from '~/constants/httpStatus'
 import { UserVerifyStatus } from '~/constants/enums'
 import { pick } from 'lodash'
 import { access } from 'fs'
-// config()
+// loadEnvConfig()
 
 export const loginController = async (req: Request, res: Response) => {
   const user = req.user as User

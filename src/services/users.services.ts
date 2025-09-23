@@ -14,7 +14,8 @@ import { ErrorWithStatus } from '~/models/Errors'
 import HTTP_STATUS from '~/constants/httpStatus'
 import Follower from '~/models/schemas/Follower.schema'
 import axios from 'axios'
-config()
+import { loadEnvConfig } from '~/utils/config'
+loadEnvConfig()
 // const ACCESS_TOKEN_EXPIRES_IN: string = process.env.ACCESS_TOKEN_EXPIRES_IN || '15m'
 // const REFRESH_TOKEN_EXPIRES_IN: string = process.env.REFRESH_TOKEN_EXPIRES_IN || '100d'
 class UsersService {

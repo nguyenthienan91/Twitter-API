@@ -4,7 +4,8 @@ import { config } from 'dotenv'
 import jwt from 'jsonwebtoken'
 import { resolve } from 'path'
 import { TokenPayLoad } from '~/models/requests/User.requests'
-config()
+import { loadEnvConfig } from './config'
+loadEnvConfig()
 export const signToken = ({
   payload,
   privateKey,
