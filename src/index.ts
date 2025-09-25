@@ -9,10 +9,16 @@ import { UPLOAD_IMAGE_DIR, UPLOAD_VIDEO_DIR } from './constants/directory'
 import staticRouter from './routes/static.routes'
 import cors from 'cors'
 import { loadEnvConfig } from './utils/config'
+import { MongoClient } from 'mongodb'
 
 loadEnvConfig()
 
-databaseService.connect()
+databaseService.connect().then(() => {
+  databaseService.indexUsers()
+  databaseService.indexRefreshTokens()
+  databaseService.indexVideoStatus()
+  databaseService.indexFollowers()
+})
 const app = express()
 const PORT = process.env.PORT || 4000
 app.use(cors())
@@ -31,3 +37,21 @@ app.use(defaultErrorHandler) //default handler
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
+
+// const mongoclient = new MongoClient(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
+// @twitter.6gg1jz7.mongodb.net/?retryWrites=true&w=majority&appName=Twitter`)
+
+// const db = mongoclient.db('student')
+// const users = db.collection('users')
+// const usersData = []
+// function getRandomNumber() {
+//   return Math.floor(Math.random() * 100) + 1
+// }
+// for (let i = 0; i < 1000; i++) {
+//   usersData.push({
+//     name: 'user' + (i + 1),
+//     age: getRandomNumber(),
+//     gender: i % 2 === 0 ? 'male' : 'female'
+//   })
+// }
+// users.insertMany(usersData)
