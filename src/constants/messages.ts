@@ -68,3 +68,23 @@ export const USERS_MESSAGES = {
   REFRESH_TOKEN_SUCCESS: 'Refresh token success',
   GET_VIDEO_STATUS_SUCCESS: 'Get video status success'
 } as const
+
+export const TWEETS_MESSAGES = {
+  TWEET_CREATED: 'Tweet created successfully',
+  TWEET_NOT_FOUND: 'Tweet not found',
+  TWEET_UPDATED: 'Tweet updated successfully',
+  TWEET_DELETED: 'Tweet deleted successfully',
+  TWEET_LIKED: 'Tweet liked successfully',
+  TWEET_UNLIKED: 'Tweet unliked successfully',
+  TWEET_REPLIED: 'Tweet replied successfully',
+  TWEET_RETWEETED: 'Tweet retweeted successfully',
+  INVALID_TWEET_TYPE: 'Invalid tweet type',
+  INVALID_TWEET_AUDIENCE: 'Invalid tweet audience',
+  PARENT_ID_MUST_BE_A_VALID_TWEET_ID: 'Parent_id must be a valid tweet id when type is Retweet, Comment or QuoteTweet',
+  PARENT_ID_MUST_BE_NULL: 'Parent_id must be null when type is Tweet',
+  CONTENT_MUST_BE_A_NON_EMPTY_STRING: 'Content must be a non-empty string when type is Tweet, Comment or QuoteTweet',
+  CONTENT_MUST_BE_A_EMPTY_STRING: 'Content must be an empty string when type is Retweet',
+  HASHTAGS_MUST_BE_AN_ARRAY_OF_STRING: 'Hashtags must be an array of string',
+  MENTIONS_MUST_BE_AN_ARRAY_OF_USER_ID: 'Mentions must be an array of user id',
+  MEDIA_MUST_BE_AN_ARRAY_OF_MEDIA_OBJECT: 'Media must be an array of media object',
+} as const
