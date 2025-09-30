@@ -6,6 +6,8 @@ import Follower from '~/models/schemas/Follower.schema'
 import VideoStatus from '~/models/schemas/VideoStatus.schema'
 import { loadEnvConfig } from '~/utils/config'
 import Tweet from '~/models/schemas/Tweet.schema'
+import HashTag from '~/models/schemas/Hashtag.schema'
+import BookMark from '~/models/schemas/Bookmark.schema'
 loadEnvConfig()
 // console.log(process.env.DB_USERNAME)
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
@@ -87,6 +89,14 @@ class DatabaseService {
 
   get tweets(): Collection<Tweet> {
     return this.db.collection(process.env.DB_TWEETS_COLLECTION as string)
+  }
+
+  get hashtags(): Collection<HashTag> {
+    return this.db.collection(process.env.DB_HASHTAGS_COLLECTION as string)
+  }
+
+  get bookmarks(): Collection<BookMark> {
+    return this.db.collection(process.env.DB_BOOKMARKS_COLLECTION as string)
   }
 }
 

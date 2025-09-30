@@ -11,6 +11,7 @@ import cors from 'cors'
 import { loadEnvConfig } from './utils/config'
 import { MongoClient } from 'mongodb'
 import tweetsRouter from './routes/tweets.routes'
+import bookMarksRouter from './routes/bookmarks.routes'
 
 loadEnvConfig()
 
@@ -34,6 +35,8 @@ app.use('/users', usersRouter)
 app.use('/medias', mediasRouter)
 app.use('/static', staticRouter)
 app.use('/tweets', tweetsRouter)
+app.use('/bookmarks', bookMarksRouter)
+
 
 app.use(defaultErrorHandler) //default handler
 app.listen(PORT, () => {
