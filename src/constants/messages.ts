@@ -80,6 +80,7 @@ export const TWEETS_MESSAGES = {
   TWEET_RETWEETED: 'Tweet retweeted successfully',
   INVALID_TWEET_TYPE: 'Invalid tweet type',
   INVALID_TWEET_AUDIENCE: 'Invalid tweet audience',
+  INVALID_TWEET_ID: 'Invalid tweet id',
   PARENT_ID_MUST_BE_A_VALID_TWEET_ID: 'Parent_id must be a valid tweet id when type is Retweet, Comment or QuoteTweet',
   PARENT_ID_MUST_BE_NULL: 'Parent_id must be null when type is Tweet',
   CONTENT_MUST_BE_A_NON_EMPTY_STRING: 'Content must be a non-empty string when type is Tweet, Comment or QuoteTweet',
@@ -88,5 +89,7 @@ export const TWEETS_MESSAGES = {
   MENTIONS_MUST_BE_AN_ARRAY_OF_USER_ID: 'Mentions must be an array of user id',
   MEDIA_MUST_BE_AN_ARRAY_OF_MEDIA_OBJECT: 'Media must be an array of media object',
   BOOKMARK_TWEET_SUCCESSFULLY: 'Bookmark tweet successfully',
-  UNBOOKMARK_TWEET_SUCCESSFULLY: 'Unbookmark tweet successfully'
+  UNBOOKMARK_TWEET_SUCCESSFULLY: 'Unbookmark tweet successfully',
+  LIKE_TWEET_SUCCESSFULLY: 'Like tweet successfully',
+  UNLIKE_TWEET_SUCCESSFULLY: 'Unlike tweet successfully'
 } as const

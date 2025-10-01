@@ -12,6 +12,7 @@ import { loadEnvConfig } from './utils/config'
 import { MongoClient } from 'mongodb'
 import tweetsRouter from './routes/tweets.routes'
 import bookMarksRouter from './routes/bookmarks.routes'
+import likesRouter from './routes/likes.routes'
 
 loadEnvConfig()
 
@@ -36,6 +37,8 @@ app.use('/medias', mediasRouter)
 app.use('/static', staticRouter)
 app.use('/tweets', tweetsRouter)
 app.use('/bookmarks', bookMarksRouter)
+app.use('/likes', likesRouter)
+
 
 
 app.use(defaultErrorHandler) //default handler
