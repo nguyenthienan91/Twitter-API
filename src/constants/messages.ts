@@ -81,6 +81,7 @@ export const TWEETS_MESSAGES = {
   INVALID_TWEET_TYPE: 'Invalid tweet type',
   INVALID_TWEET_AUDIENCE: 'Invalid tweet audience',
   INVALID_TWEET_ID: 'Invalid tweet id',
+  GET_TWEET_SUCCESS: 'Get tweet success',
   PARENT_ID_MUST_BE_A_VALID_TWEET_ID: 'Parent_id must be a valid tweet id when type is Retweet, Comment or QuoteTweet',
   PARENT_ID_MUST_BE_NULL: 'Parent_id must be null when type is Tweet',
   CONTENT_MUST_BE_A_NON_EMPTY_STRING: 'Content must be a non-empty string when type is Tweet, Comment or QuoteTweet',
@@ -91,5 +92,6 @@ export const TWEETS_MESSAGES = {
   BOOKMARK_TWEET_SUCCESSFULLY: 'Bookmark tweet successfully',
   UNBOOKMARK_TWEET_SUCCESSFULLY: 'Unbookmark tweet successfully',
   LIKE_TWEET_SUCCESSFULLY: 'Like tweet successfully',
-  UNLIKE_TWEET_SUCCESSFULLY: 'Unlike tweet successfully'
+  UNLIKE_TWEET_SUCCESSFULLY: 'Unlike tweet successfully',
+  TWEET_IS_NOT_PUBLIC: 'Tweet is not public'
 } as const
