@@ -93,5 +93,6 @@ export const TWEETS_MESSAGES = {
   UNBOOKMARK_TWEET_SUCCESSFULLY: 'Unbookmark tweet successfully',
   LIKE_TWEET_SUCCESSFULLY: 'Like tweet successfully',
   UNLIKE_TWEET_SUCCESSFULLY: 'Unlike tweet successfully',
-  TWEET_IS_NOT_PUBLIC: 'Tweet is not public'
+  TWEET_IS_NOT_PUBLIC: 'Tweet is not public',
+  GET_TWEET_CHILDREN_SUCCESS: 'Get tweet children success',
 } as const
