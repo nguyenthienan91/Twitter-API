@@ -14,6 +14,8 @@ import tweetsRouter from './routes/tweets.routes'
 import bookMarksRouter from './routes/bookmarks.routes'
 import likesRouter from './routes/likes.routes'
 
+// import './utils/fakeData'   //dùng để fake dữ liệu mongodb
+
 loadEnvConfig()
 
 databaseService.connect().then(() => {
@@ -38,8 +40,6 @@ app.use('/static', staticRouter)
 app.use('/tweets', tweetsRouter)
 app.use('/bookmarks', bookMarksRouter)
 app.use('/likes', likesRouter)
-
-
 
 app.use(defaultErrorHandler) //default handler
 app.listen(PORT, () => {

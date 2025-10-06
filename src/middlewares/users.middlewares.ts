@@ -5,7 +5,7 @@ import { USERS_MESSAGES } from '~/constants/messages'
 import { ErrorWithStatus } from '~/models/Errors'
 import databaseService from '~/services/database.services'
 import userService from '~/services/users.services'
-import { hashPassword } from '~/utils/cryto'
+import { hashPassword } from '~/utils/crypto'
 import { verifyToken } from '~/utils/jwt'
 import { validate } from '~/utils/validation'
 import { JsonWebTokenError } from 'jsonwebtoken'
@@ -609,5 +609,3 @@ export const isUserLoggedInvalidator = (middleware: (req: Request, res: Response
     next()
   }
 }
-
-

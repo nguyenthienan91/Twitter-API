@@ -1,7 +1,7 @@
 import User from '~/models/schemas/User.schema'
 import databaseService from './database.services'
 import { RegisterReqBody, TokenPayLoad, UpdateProfileReqBody } from '~/models/requests/User.requests'
-import { hashPassword } from '~/utils/cryto'
+import { hashPassword } from '~/utils/crypto'
 import { signToken, verifyToken } from '~/utils/jwt'
 import { TokenType, UserVerifyStatus } from '~/constants/enums'
 import RefreshToken from '~/models/schemas/RefreshToken.schema'
@@ -472,8 +472,6 @@ class UsersService {
     }
   }
 }
-
-
 
 const userService = new UsersService()
 export default userService
