@@ -13,6 +13,7 @@ import { MongoClient } from 'mongodb'
 import tweetsRouter from './routes/tweets.routes'
 import bookMarksRouter from './routes/bookmarks.routes'
 import likesRouter from './routes/likes.routes'
+import searchRouter from './routes/search.routes'
 
 // import './utils/fakeData'   //dùng để fake dữ liệu mongodb
 
@@ -23,6 +24,7 @@ databaseService.connect().then(() => {
   databaseService.indexRefreshTokens()
   databaseService.indexVideoStatus()
   databaseService.indexFollowers()
+  databaseService.indexTweets()
 })
 const app = express()
 const PORT = process.env.PORT || 4000
@@ -40,6 +42,7 @@ app.use('/static', staticRouter)
 app.use('/tweets', tweetsRouter)
 app.use('/bookmarks', bookMarksRouter)
 app.use('/likes', likesRouter)
+app.use('/search', searchRouter)
 
 app.use(defaultErrorHandler) //default handler
 app.listen(PORT, () => {
