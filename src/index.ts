@@ -36,6 +36,7 @@ initFolder()
 
 // thêm middleware này để parse JSON
 app.use(express.json())
+//gọi routes
 app.use('/users', usersRouter)
 app.use('/medias', mediasRouter)
 app.use('/static', staticRouter)

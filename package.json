@@ -39,6 +39,7 @@
     "typescript-eslint": "^8.39.1"
   },
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.918.0",
     "@faker-js/faker": "^10.0.0",
     "axios": "^1.12.2",
     "cors": "^2.8.5",
@@ -53,6 +54,7 @@
     "mongodb": "^6.18.0",
     "nanoid": "^5.1.5",
     "sharp": "^0.34.3",
+    "tslib": "^2.8.1",
     "zx": "^8.8.2"
   }
 }
