@@ -15,6 +15,7 @@ import HTTP_STATUS from '~/constants/httpStatus'
 import Follower from '~/models/schemas/Follower.schema'
 import axios from 'axios'
 import { loadEnvConfig } from '~/utils/config'
+import { sendVerifyEmail } from '~/utils/email'
 loadEnvConfig()
 // const ACCESS_TOKEN_EXPIRES_IN: string = process.env.ACCESS_TOKEN_EXPIRES_IN || '15m'
 // const REFRESH_TOKEN_EXPIRES_IN: string = process.env.REFRESH_TOKEN_EXPIRES_IN || '100d'
@@ -122,7 +123,32 @@ class UsersService {
     await databaseService.refreshTokens.insertOne(
       new RefreshToken({ user_id: new ObjectId(user_id), token: refresh_token, iat, exp })
     )
-    console.log('email_verify_token: ', email_verify_token)
+    //Xác thực email
+    //1. Server gửi xác thực cho user
+    //2. Người dùng click link trong email
+    //3. Người dùng gửi yêu cầu tới server với email_verify_token
+    //4. Server verify email_verify_token
+    //5. Client nhận được access_token và refresh_token
+
+    await sendVerifyEmail(
+      payload.email,
+      'Xác thực tài khoản Twitter Clone',
+      `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+        </head>
+        <body style="font-family: Arial, sans-serif;">
+          <h2>Xác thực email của bạn</h2>
+          <p>Cảm ơn bạn đã đăng ký tài khoản.</p>
+          <p>Vui lòng click vào link bên dưới để xác thực email:</p>
+          <a href="${process.env.CLIENT_URL}/verify-email?token=${email_verify_token}" style="background-color: #1DA1F2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Xác thực email</a>
+          <p>Nếu bạn không đăng ký tài khoản này, vui lòng bỏ qua email.</p>
+        </body>
+        </html>
+      `
+    )
     return {
       access_token,
       refresh_token
@@ -131,7 +157,7 @@ class UsersService {
 
   async checkEmailExist(email: string) {
     const user = await databaseService.users.findOne({ email })
-    console.log(user)
+    // console.log(user)
     return Boolean(user)
   }
 

@@ -53,15 +53,35 @@ const sendVerifyEmail = async (toAddress, subject, body) => {
   })
 
   try {
-    return await sesClient.send(sendEmailCommand)
+    const result = await sesClient.send(sendEmailCommand)
+    console.log('Email sent successfully:', result)
+    console.log('MessageId:', result.MessageId)
+    return result
   } catch (e) {
-    console.error('Failed to send email.')
+    console.error('Failed to send email:', e)
+    console.error('Error details:', e.message)
     return e
   }
 }
 
 sendVerifyEmail(
   'nthienan0901@gmail.com',
-  'Test gửi mail từ amazon SES',
-  '<h1>Nội dung email được gửi từ nguyenthienandzpro@gmail.com</h1>'
-)
+  'Xác thực tài khoản Twitter Clone',
+  `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+    </head>
+    <body style="font-family: Arial, sans-serif;">
+      <h2>Xác thực email của bạn</h2>
+      <p>Cảm ơn bạn đã đăng ký tài khoản.</p>
+      <p>Vui lòng click vào link bên dưới để xác thực email:</p>
+      <a href="http://localhost:4000/verify-email?token=xxx" style="background-color: #1DA1F2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Xác thực email</a>
+      <p>Nếu bạn không đăng ký tài khoản này, vui lòng bỏ qua email.</p>
+    </body>
+    </html>
+  `
+).then(() => {
+  console.log('Email sending completed')
+})
